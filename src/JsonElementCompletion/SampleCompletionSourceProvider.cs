@@ -9,8 +9,7 @@ namespace AsyncCompletionSample.JsonElementCompletion
 {
     [Export(typeof(IAsyncCompletionSourceProvider))]
     [Name("Chemical element dictionary completion provider")]
-    //[ContentType("text")]
-    [ContentType("SQL Server Tools")]
+    [ContentType(IntelliSqlPackage.ThisContentType)]
     class SampleCompletionSourceProvider : IAsyncCompletionSourceProvider
     {
         IDictionary<ITextView, IAsyncCompletionSource> cache = new Dictionary<ITextView, IAsyncCompletionSource>();

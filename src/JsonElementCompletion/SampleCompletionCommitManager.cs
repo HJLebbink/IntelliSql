@@ -17,9 +17,9 @@ namespace AsyncCompletionSample.JsonElementCompletion
         {
         }
 
-        ImmutableArray<char> commitChars = new char[] { ' ', '\'', '"', ',', '.', ';', ':' }.ToImmutableArray();
+        readonly ImmutableArray<char> commitChars = new char[] { ' ', '\'', '"', ',', '.', ';', ':' }.ToImmutableArray();
 
-        public IEnumerable<char> PotentialCommitCharacters => commitChars;
+        public IEnumerable<char> PotentialCommitCharacters => this.commitChars;
 
         public bool ShouldCommitCompletion(IAsyncCompletionSession session, SnapshotPoint location, char typedChar, CancellationToken token)
         {

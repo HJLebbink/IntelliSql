@@ -43,7 +43,7 @@ namespace AsyncCompletionSample.CompletionItemManager
 
             // Pattern matcher not only filters, but also provides a way to order the results by their match quality.
             // The relevant CompletionItem is match.Item1, its PatternMatch is match.Item2
-            var patternMatcher = _patternMatcherFactory.CreatePatternMatcher(
+            var patternMatcher = this._patternMatcherFactory.CreatePatternMatcher(
                 filterText,
                 new PatternMatcherCreationOptions(System.Globalization.CultureInfo.CurrentCulture, PatternMatcherCreationFlags.IncludeMatchedSpans));
 

@@ -134,13 +134,13 @@ namespace AsyncCompletionSample.JsonElementCompletion
 
             // User is likely in the key portion of the pair
             if (!colonExistsBeforeCaret)
-                return GetContextForKey();
+                return this.GetContextForKey();
 
             // User is likely in the value portion of the pair. Try to provide extra items based on the key.
             var KeyExtractingRegex = new Regex(@"\W*(\w+)\W*:");
             var key = KeyExtractingRegex.Match(textBeforeCaret);
             var candidateName = key.Success ? key.Groups.Count > 0 && key.Groups[1].Success ? key.Groups[1].Value : string.Empty : string.Empty;
-            return GetContextForValue(candidateName);
+            return this.GetContextForValue(candidateName);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace AsyncCompletionSample.JsonElementCompletion
             ImmutableArray<CompletionItem> itemsBasedOnKey = ImmutableArray<CompletionItem>.Empty;
             if (!string.IsNullOrEmpty(key))
             {
-                var matchingElement = Catalog.Elements.FirstOrDefault(n => n.Name == key);
+                var matchingElement = this.Catalog.Elements.FirstOrDefault(n => n.Name == key);
                 if (matchingElement != null)
                 {
                     var itemsBuilder = ImmutableArray.CreateBuilder<CompletionItem>();
@@ -174,7 +174,7 @@ namespace AsyncCompletionSample.JsonElementCompletion
         /// </summary>
         private CompletionContext GetContextForKey()
         {
-            var context = new CompletionContext(Catalog.Elements.Select(n => MakeItemFromElement(n)).ToImmutableArray());
+            var context = new CompletionContext(this.Catalog.Elements.Select(n => this.MakeItemFromElement(n)).ToImmutableArray());
             return context;
         }
 

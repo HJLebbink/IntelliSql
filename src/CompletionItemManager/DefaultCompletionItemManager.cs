@@ -1,24 +1,25 @@
-﻿using Microsoft.VisualStudio.Language.Intellisense.AsyncCompletion;
-using Microsoft.VisualStudio.Language.Intellisense.AsyncCompletion.Data;
-using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.PatternMatching;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
+﻿
 namespace AsyncCompletionSample.CompletionItemManager
 {
+    using Microsoft.VisualStudio.Language.Intellisense.AsyncCompletion;
+    using Microsoft.VisualStudio.Language.Intellisense.AsyncCompletion.Data;
+    using Microsoft.VisualStudio.Text;
+    using Microsoft.VisualStudio.Text.PatternMatching;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Linq;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     internal sealed class DefaultCompletionItemManager : IAsyncCompletionItemManager
     {
         readonly IPatternMatcherFactory _patternMatcherFactory;
 
         internal DefaultCompletionItemManager(IPatternMatcherFactory patternMatcherFactory)
         {
-            _patternMatcherFactory = patternMatcherFactory;
+            this._patternMatcherFactory = patternMatcherFactory;
         }
 
         Task<FilteredCompletionModel> IAsyncCompletionItemManager.UpdateCompletionListAsync

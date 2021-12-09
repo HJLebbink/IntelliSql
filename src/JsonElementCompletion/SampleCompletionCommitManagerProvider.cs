@@ -19,12 +19,12 @@ namespace AsyncCompletionSample.JsonElementCompletion
 
         public IAsyncCompletionCommitManager GetOrCreate(ITextView textView)
         {
-            if (cache.TryGetValue(textView, out var itemSource))
+            if (this.cache.TryGetValue(textView, out var itemSource))
                 return itemSource;
 
             var manager = new SampleCompletionCommitManager();
-            textView.Closed += (o, e) => cache.Remove(textView); // clean up memory as files are closed
-            cache.Add(textView, manager);
+            textView.Closed += (o, e) => this.cache.Remove(textView); // clean up memory as files are closed
+            this.cache.Add(textView, manager);
             return manager;
         }
     }
